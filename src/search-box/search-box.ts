@@ -8,11 +8,13 @@ import {
   ViewChild,
   AfterViewInit,
   ElementRef,
+  Optional,
 } from '@angular/core';
 
 import { connectSearchBox } from 'instantsearch.js/es/connectors';
 import { BaseWidget } from '../base-widget';
 import { NgAisInstantSearch } from '../instantsearch/instantsearch';
+import { NgAisIndex } from '../index-widget/index-widget';
 import { noop } from '../utils';
 
 @Component({
@@ -97,6 +99,9 @@ export class NgAisSearchBox extends BaseWidget implements AfterViewInit {
   };
 
   constructor(
+    @Inject(forwardRef(() => NgAisIndex))
+    @Optional()
+    public indexParent: NgAisIndex,
     @Inject(forwardRef(() => NgAisInstantSearch))
     public instantSearchParent: NgAisInstantSearch
   ) {

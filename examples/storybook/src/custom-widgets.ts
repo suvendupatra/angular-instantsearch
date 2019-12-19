@@ -1,9 +1,10 @@
-import { Component, OnInit, Inject, forwardRef } from '@angular/core';
+import { Component, OnInit, forwardRef, Inject, Optional } from '@angular/core';
 import {
   BaseWidget,
-  NgAisInstantSearch,
   Widget,
   Connector,
+  NgAisInstantSearch,
+  NgAisIndex,
 } from 'angular-instantsearch';
 import { connectMenu } from 'instantsearch.js/es/connectors';
 
@@ -26,6 +27,9 @@ import { connectMenu } from 'instantsearch.js/es/connectors';
 })
 export class MenuSelect extends BaseWidget implements OnInit {
   constructor(
+    @Inject(forwardRef(() => NgAisIndex))
+    @Optional()
+    public indexParent: NgAisIndex,
     @Inject(forwardRef(() => NgAisInstantSearch))
     public instantSearchParent: NgAisInstantSearch
   ) {
@@ -80,6 +84,9 @@ const connectNoop: Connector = function(
 })
 export class Refresh extends BaseWidget implements OnInit {
   constructor(
+    @Inject(forwardRef(() => NgAisIndex))
+    @Optional()
+    public indexParent: NgAisIndex,
     @Inject(forwardRef(() => NgAisInstantSearch))
     public instantSearchParent: NgAisInstantSearch
   ) {

@@ -5,6 +5,7 @@ import {
   forwardRef,
   KeyValueDiffer,
   KeyValueDiffers,
+  Optional,
 } from '@angular/core';
 
 import { connectConfigure } from 'instantsearch.js/es/connectors';
@@ -13,6 +14,7 @@ import {
   NgAisInstantSearch,
   SearchParameters,
 } from '../instantsearch/instantsearch';
+import { NgAisIndex } from '../index-widget/index-widget';
 import { noop } from '../utils';
 
 export type ConfigureState = {
@@ -35,6 +37,9 @@ export class NgAisConfigure extends BaseWidget {
 
   constructor(
     private differs: KeyValueDiffers,
+    @Inject(forwardRef(() => NgAisIndex))
+    @Optional()
+    public indexParent: NgAisIndex,
     @Inject(forwardRef(() => NgAisInstantSearch))
     public instantSearchParent: NgAisInstantSearch
   ) {

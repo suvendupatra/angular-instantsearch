@@ -4,12 +4,14 @@ import {
   TemplateRef,
   Inject,
   forwardRef,
+  Optional,
 } from '@angular/core';
 
 import { connectStats } from 'instantsearch.js/es/connectors';
 
 import { BaseWidget, Connector } from '../base-widget';
 import { NgAisInstantSearch } from '../instantsearch/instantsearch';
+import { NgAisIndex } from '../index-widget/index-widget';
 
 @Component({
   selector: 'ais-stats',
@@ -41,6 +43,9 @@ export class NgAisStats extends BaseWidget {
   }
 
   constructor(
+    @Inject(forwardRef(() => NgAisIndex))
+    @Optional()
+    public indexParent: NgAisIndex,
     @Inject(forwardRef(() => NgAisInstantSearch))
     public instantSearchParent: NgAisInstantSearch
   ) {

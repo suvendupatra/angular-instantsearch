@@ -1,8 +1,9 @@
-import { Component, Input, Inject, forwardRef } from '@angular/core';
+import { Component, Input, Inject, forwardRef, Optional } from '@angular/core';
 
 import { connectRatingMenu } from 'instantsearch.js/es/connectors';
 import { BaseWidget } from '../base-widget';
 import { NgAisInstantSearch } from '../instantsearch/instantsearch';
+import { NgAisIndex } from '../index-widget/index-widget';
 import { noop, parseNumberInput } from '../utils';
 
 export type RatingMenuItem = {
@@ -104,6 +105,9 @@ export class NgAisRatingMenu extends BaseWidget {
   }
 
   constructor(
+    @Inject(forwardRef(() => NgAisIndex))
+    @Optional()
+    public indexParent: NgAisIndex,
     @Inject(forwardRef(() => NgAisInstantSearch))
     public instantSearchParent: NgAisInstantSearch
   ) {

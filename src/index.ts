@@ -13,6 +13,8 @@ import { NgAisHitsPerPageModule } from './hits-per-page/hits-per-page.module';
 export { NgAisHitsPerPageModule };
 import { NgAisHitsModule } from './hits/hits.module';
 export { NgAisHitsModule };
+import { NgAisIndexModule } from './index-widget/index-widget.module';
+export { NgAisIndexModule };
 import { NgAisInfiniteHitsModule } from './infinite-hits/infinite-hits.module';
 export { NgAisInfiniteHitsModule };
 import { NgAisInstantSearchModule } from './instantsearch/instantsearch.module';
@@ -53,19 +55,18 @@ import { NgAisVoiceSearchModule } from './voice-search/voice-search.module';
 export { NgAisVoiceSearchModule };
 
 // Server-side rendering search client
-import { createSSRSearchClient } from './create-ssr-search-client';
-export { createSSRSearchClient };
-
+export { createSSRSearchClient } from './create-ssr-search-client';
 export { parseServerRequest } from './parse-server-request';
 
 // Custom widget with BaseWidget class
 export { BaseWidget, Widget, Connector } from './base-widget';
 
-import { NgAisInstantSearch } from './instantsearch/instantsearch';
-export { NgAisInstantSearch };
+export { NgAisInstantSearch } from './instantsearch/instantsearch';
+export { NgAisIndex } from './index-widget/index-widget';
 
 const NGIS_MODULES = [
   NgAisInstantSearchModule,
+  NgAisIndexModule,
   NgAisHitsModule,
   NgAisSearchBoxModule,
   NgAisClearRefinementsModule,

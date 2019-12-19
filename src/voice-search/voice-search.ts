@@ -8,11 +8,13 @@ import {
   ElementRef,
   TemplateRef,
   OnInit,
+  Optional,
 } from '@angular/core';
 
 import { connectVoiceSearch } from 'instantsearch.js/es/connectors';
 import { BaseWidget } from '../base-widget';
 import { NgAisInstantSearch } from '../instantsearch/instantsearch';
+import { NgAisIndex } from '../index-widget/index-widget';
 import { noop } from '../utils';
 
 type Status =
@@ -143,6 +145,9 @@ export class NgAisVoiceSearch extends BaseWidget implements OnInit {
   };
 
   constructor(
+    @Inject(forwardRef(() => NgAisIndex))
+    @Optional()
+    public indexParent: NgAisIndex,
     @Inject(forwardRef(() => NgAisInstantSearch))
     public instantSearchParent: NgAisInstantSearch,
     private zone: NgZone
