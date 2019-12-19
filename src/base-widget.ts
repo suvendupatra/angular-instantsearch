@@ -1,7 +1,8 @@
-import { Input, OnDestroy, OnInit } from '@angular/core';
+import { Input, OnDestroy, OnInit, forwardRef } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { bem, noop } from './utils';
 import { NgAisInstantSearch } from './instantsearch/instantsearch';
+import { NgAisIndex } from './index-widget/index-widget';
 import { Widget } from 'instantsearch.js/es/types';
 export { Widget };
 
@@ -17,12 +18,16 @@ export abstract class BaseWidget implements OnInit, OnDestroy {
   public state?: object = {};
   public cx: ReturnType<typeof bem>;
   public abstract instantSearchParent: NgAisInstantSearch;
+  public abstract indexParent?: NgAisIndex;
 
   constructor(widgetName: string) {
     this.cx = bem(widgetName);
   }
 
   get parent() {
+    if (this.indexParent) {
+      return this.indexParent;
+    }
     return this.instantSearchParent;
   }
 
